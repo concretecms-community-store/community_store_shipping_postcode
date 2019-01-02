@@ -1,34 +1,32 @@
 <?php
 namespace Concrete\Package\CommunityStoreShippingPostcode\Src\CommunityStore\Shipping\Method\Types;
 
-use Package;
 use Core;
 use Database;
 use Concrete\Package\CommunityStore\Src\CommunityStore\Shipping\Method\ShippingMethodTypeMethod;
-use Concrete\Package\CommunityStore\Src\CommunityStore\Cart\Cart as StoreCart;
 use Concrete\Package\CommunityStore\Src\CommunityStore\Utilities\Calculator as StoreCalculator;
 use Concrete\Package\CommunityStore\Src\CommunityStore\Customer\Customer as StoreCustomer;
 use Concrete\Package\CommunityStore\Src\CommunityStore\Shipping\Method\ShippingMethodOffer as StoreShippingMethodOffer;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @Entity
- * @Table(name="CommunityStorePostcodeMethods")
+ * @ORM\Entity
+ * @ORM\Table(name="CommunityStorePostcodeMethods")
  */
 class PostcodeShippingMethod extends ShippingMethodTypeMethod
 {
-
     /**
-     * @Column(type="float")
+     * @ORM\Column(type="float")
      */
     protected $minimumAmount;
 
     /**
-     * @Column(type="float")
+     * @ORM\Column(type="float")
      */
     protected $maximumAmount;
 
     /**
-     * @Column(type="string")
+     * @ORM\Column(type="string")
      */
     protected $country;
 
