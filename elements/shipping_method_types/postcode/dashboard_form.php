@@ -20,7 +20,7 @@ $co = Core::make('helper/lists/countries');
         <div class="form-group">
             <?= $form->label('minimumAmount', t("Minimum Purchase Amount for this rate to apply")); ?>
             <div class="input-group">
-                <div class="input-group-addon">
+                <div class="input-group-addon input-group-text">
                     <?= Config::get('community_store.symbol'); ?>
                 </div>
                 <?= $form->text('minimumAmount', $smtm->getMinimumAmount() ? $smtm->getMinimumAmount() : '0'); ?>
@@ -31,7 +31,7 @@ $co = Core::make('helper/lists/countries');
         <div class="form-group">
             <?= $form->label('maximumAmount', t("Maximum Purchase Amount for this rate to apply")); ?>
             <div class="input-group">
-                <div class="input-group-addon">
+                <div class="input-group-addon input-group-text">
                     <?= Config::get('community_store.symbol'); ?>
                 </div>
                 <?= $form->text('maximumAmount', $smtm->getMaximumAmount() ? $smtm->getMaximumAmount() : '0'); ?>
@@ -60,6 +60,8 @@ $co = Core::make('helper/lists/countries');
                     <input name="postcodes[]" type="text" class="form-control ccm-input-text"
                            value="<?php echo $rate['postcodes']; ?>"/>
 
+                    <div class="help-block"><?= t('Enter a comma separated list of postcodes or ranges, e.g. 1001,1002,2000-3000,4001'); ?></div>
+
                 </div>
 
 
@@ -77,7 +79,7 @@ $co = Core::make('helper/lists/countries');
                         </div>
                         <div class="form-group">
                             <div class="input-group">
-                                <div class="input-group-addon">
+                                <div class="input-group-addon input-group-text">
                                     <?= Config::get('community_store.symbol'); ?>
                                 </div>
                                 <input name="rate[]" type="text" class="form-control ccm-input-text" placeholder="<?php echo t('Shipping Rate'); ?>" value="<?php echo $rate['rate']; ?>"/>
@@ -85,10 +87,10 @@ $co = Core::make('helper/lists/countries');
                         </div>
                         <div class="form-group">
                             <div class="input-group">
-                                <div class="input-group-addon">
+                                <div class="input-group-addon input-group-text">
                                     <?= Config::get('community_store.symbol'); ?>
                                 </div>
-                                <input name="free[]" type="text" class="form-control ccm-input-text" placeholder="<?php echo t('Free Threshold'); ?>" value="<?php echo $rate['free']; ?>"/>
+                                <input name="free[]" type="text" class="form-control ccm-input-text" placeholder="<?php echo t('Free Threshold'); ?>" value="<?php echo isset($rate['free']) ? $rate['free'] : ''; ?>"/>
                             </div>
                         </div>
 
@@ -99,24 +101,24 @@ $co = Core::make('helper/lists/countries');
                         </div>
 
                         <div class="form-group">
-                            <input name="expresslabel[]" type="text" class="form-control ccm-input-text" value="<?php echo $rate['expresslabel']; ?>"  placeholder="<?php echo t('Label'); ?>"/>
+                            <input name="expresslabel[]" type="text" class="form-control ccm-input-text" value="<?php echo isset($rate['expresslabel']) ? $rate['expresslabel'] : ''; ?>"  placeholder="<?php echo t('Label'); ?>"/>
                         </div>
 
                         <div class="form-group">
                             <div class="input-group">
-                                <div class="input-group-addon">
+                                <div class="input-group-addon input-group-text">
                                     <?= Config::get('community_store.symbol'); ?>
                                 </div>
-                                <input name="expressrate[]" type="text" class="form-control ccm-input-text" placeholder="<?php echo t('Shipping Rate'); ?>" value="<?php echo $rate['expressrate']; ?>"/>
+                                <input name="expressrate[]" type="text" class="form-control ccm-input-text" placeholder="<?php echo t('Shipping Rate'); ?>" value="<?php echo isset($rate['free']) ?  $rate['expressrate'] : ''; ?>"/>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="input-group">
-                                <div class="input-group-addon">
+                                <div class="input-group-addon input-group-text">
                                     <?= Config::get('community_store.symbol'); ?>
                                 </div>
-                                <input name="freeexpress[]" type="text" class="form-control ccm-input-text" placeholder="<?php echo t('Free Threshold'); ?>" value="<?php echo $rate['freeexpress']; ?>"/>
+                                <input name="freeexpress[]" type="text" class="form-control ccm-input-text" placeholder="<?php echo t('Free Threshold'); ?>" value="<?php echo isset($rate['free']) ?  $rate['freeexpress'] : ''; ?>"/>
                             </div>
                         </div>
                     </div>

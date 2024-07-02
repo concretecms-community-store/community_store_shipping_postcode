@@ -16,12 +16,12 @@ use Doctrine\ORM\Mapping as ORM;
 class PostcodeShippingMethod extends ShippingMethodTypeMethod
 {
     /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="float", nullable=true)
      */
     protected $minimumAmount;
 
     /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="float", nullable=true)
      */
     protected $maximumAmount;
 
@@ -154,6 +154,13 @@ class PostcodeShippingMethod extends ShippingMethodTypeMethod
         $customer = new StoreCustomer();
 
         $shippingpostcode = $customer->getAddressValue('shipping_address', 'postal_code');
+
+        $reg = '^(((([A-Z][A-Z]{0,1})[0-9][A-Z0-9]{0,1}) {0,}[0-9])[A-Z]{2})$^';
+        preg_match($reg, $shippingpostcode, $matches, PREG_OFFSET_CAPTURE);
+
+        if (isset($matches[3][0])) {
+            $shippingpostcode = $matches[3][0];
+        }
 
         $allrates = \Config::get('community_store_shipping_postcode.' . 'shipping_method_' . $this->getShippingMethodTypeMethodID());
 
